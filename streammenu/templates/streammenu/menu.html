@@ -1,0 +1,41 @@
+{% if menu %}
+    <div role="navigation" class="navbar navbar-default container-fluid" id="{{ menu.slug }}">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target="#{{ menu.slug|add:'-collapse' }}">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <form class="navbar-form navbar-right" role="search" action="{% url 'search' %}" method="get">
+                    <div class="input-group">
+                        <input type="text" name="query" class="form-control" placeholder="Search…" value="{{ search_query }}" />
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="navbar-collapse collapse" id="{{ menu.slug|add:'-collapse' }}">
+                <ul class="nav navbar-nav">
+                    {% for block in menu.body %}
+                        {{ block }}
+                    {% endfor %}
+                </ul>
+                <form class="visible-xs navbar-form navbar-right" role="search" action="{% url 'search' %}" method="get">
+                    <div class="input-group">
+                        <input type="text" name="query" class="form-control" placeholder="Search…" value="{{ search_query }}" />
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endif %}
